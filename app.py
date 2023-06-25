@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_migrate import Migrate
 from flask_restx import Api
 
 from config import Config
@@ -32,5 +33,7 @@ def create_data(app, db):
 app = create_app(Config())
 app.debug = True
 
+migrate = Migrate(app, db, render_as_batch=True)
+
 if __name__ == '__main__':
-    app.run(host="localhost", port=10001, debug=True)
+    app.run(host="0.0.0.0", port=8000, debug=True)
